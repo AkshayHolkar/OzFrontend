@@ -11,6 +11,9 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { ProductCardListComponent } from './components/product-card-list/product-card-list.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { CartCardComponent } from './components/cart-card/cart-card.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,9 @@ import { LoginComponent } from './components/login/login.component';
     ProductCardListComponent,
     FooterComponent,
     LoginComponent,
+    RegisterComponent,
+    CartCardComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
