@@ -14,6 +14,9 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CartCardComponent } from './components/cart-card/cart-card.component';
 import { CartComponent } from './components/cart/cart.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { AccountComponent } from './components/account/account.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -27,12 +30,15 @@ import { CartComponent } from './components/cart/cart.component';
     RegisterComponent,
     CartCardComponent,
     CartComponent,
+    ProductDetailComponent,
+    AccountComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MdbModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
