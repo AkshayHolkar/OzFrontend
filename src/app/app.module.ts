@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
+import { ProductCardListComponent } from './components/product-card-list/product-card-list.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { ProductCardComponent } from './components/product-card/product-card.com
     HeaderComponent,
     HomeComponent,
     ProductCardComponent,
+    ProductCardListComponent,
   ],
   imports: [
     BrowserModule,
