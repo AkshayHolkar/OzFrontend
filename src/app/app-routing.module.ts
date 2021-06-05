@@ -3,10 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { AccountComponent } from './components/account/account.component';
 import { CartComponent } from './components/cart/cart.component';
 import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
-import { ProductCardListComponent } from './components/product-card-list/product-card-list.component';
-import { ProductDetailComponent } from './components/product-detail/product-detail.component';
-import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/user/login/login.component';
+import { ProductCardListComponent } from './components/Product/product-card-list/product-card-list.component';
+import { ProductDetailComponent } from './components/Product/product-detail/product-detail.component';
+import { RegisterComponent } from './components/user/register/register.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
