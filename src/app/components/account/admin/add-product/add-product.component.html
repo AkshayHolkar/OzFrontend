@@ -1,0 +1,73 @@
+<div class="col sm-6 main">
+    <form>
+        <div class="form-group">
+            <label for="exampleInput">Name</label>
+            <input type="text" class="form-control" id="exampleInput" placeholder="Please Enter Name">
+        </div>
+        <div class="form-group">
+            <label for="exampleInput">Price</label>
+            <input type="number" class="form-control" id="exampleInput" placeholder="Please Enter Price">
+        </div>
+        <div class="form-group">
+            <label for="exampleInput">Quantity</label>
+            <input type="text" class="form-control" id="exampleInput" placeholder="Please Enter Available Quantity">
+        </div>
+        <div class="form-group">
+            <label for="exampleInput">Description</label>
+            <input type="text" class="form-control" id="exampleInput" placeholder="Please enter Product Description">
+        </div>
+        <div class="form-group">
+            <label for="exampleInput">Select Category</label>
+            <select id="Category" name="category" class="form-control col-sm-7">
+                <option value="case">Case</option>
+                <option value="Power">Powerbank</option>
+            </select>
+        </div>
+        <div class="form-group mb-3 row">
+            <label for="validationCustomUsername" class="col-xl-3 col-sm-4 mb-0">Available Size:</label>
+            <input type="checkbox"> <span>Not Applicable</span>
+            <input type="checkbox"> <span>XS</span>
+            <input type="checkbox"> <span>S</span>
+            <input type="checkbox"> <span>M</span>
+            <input type="checkbox"> <span>L</span>
+            <input type="checkbox"> <span>XL</span>
+            <input type="checkbox"> <span>XXL</span>
+
+            <div class="invalid-feedback offset-sm-4 offset-xl-3">Looks good!</div>
+        </div>
+        <div class="form-group mb-3 row">
+            <label for="validationCustomUsername" class="col-xl-3 col-sm-4 mb-0">Available Colours:</label>
+
+            <input type="checkbox"> <span>Not Applicable</span>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Add</th>
+                        <th>Pick Color</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>Color 1:
+                            <input type="text" [(colorPicker)]="color" [style.background]="color" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>Color 2: <input type="text" [(colorPicker)]="color" [style.background]="color" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>Color 3: <input type="text" [(colorPicker)]="color" [style.background]="color" />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
