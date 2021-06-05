@@ -20,6 +20,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProfileComponent } from './components/account/profile/profile.component';
 import { OrderComponent } from './components/account/order/order.component';
 import { OrderDetailComponent } from './components/account/order-detail/order-detail.component';
+import { AddProductComponent } from './components/account/admin/add-product/add-product.component';
+import { ColorPickerModule } from 'ngx-color-picker';
+import { AdminAccountComponent } from './components/account/admin/admin-account/admin-account.component';
 
 @NgModule({
   declarations: [
@@ -38,13 +41,16 @@ import { OrderDetailComponent } from './components/account/order-detail/order-de
     ProfileComponent,
     OrderComponent,
     OrderDetailComponent,
+    AddProductComponent,
+    AdminAccountComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MdbModule,
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
+    ColorPickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
