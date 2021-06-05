@@ -12,12 +12,17 @@ import { AdminAccountComponent } from './components/account/admin/admin-account/
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'products', component: ProductCardListComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'cart', component: CartComponent },
   { path: 'product/:id', component: ProductDetailComponent },
-  { path: 'account', component: AccountComponent },
-  { path: 'admin', component: AdminAccountComponent }
+  {
+    path: 'user',
+    children: [
+      { path: 'cart', component: CartComponent },
+      { path: 'account', component: AccountComponent },
+      { path: 'admin', component: AdminAccountComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent }
+    ]
+  }
 ];
 
 @NgModule({
