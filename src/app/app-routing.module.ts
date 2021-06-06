@@ -8,6 +8,7 @@ import { ProductCardListComponent } from './components/Product/product-card-list
 import { ProductDetailComponent } from './components/Product/product-detail/product-detail.component';
 import { RegisterComponent } from './components/user/register/register.component';
 import { AdminAccountComponent } from './components/account/admin/admin-account/admin-account.component';
+import { ProfileComponent } from './components/account/profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
     path: 'user',
     children: [
       { path: 'cart', component: CartComponent },
+      { path: 'profile', component: ProfileComponent },
       { path: 'account', component: AccountComponent },
       { path: 'admin', component: AdminAccountComponent },
       { path: 'login', component: LoginComponent },
