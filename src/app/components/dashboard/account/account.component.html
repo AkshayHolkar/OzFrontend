@@ -1,37 +1,72 @@
+<p *ngIf="isFail">
+    <ngb-alert type="danger" [dismissible]="true">
+        <strong>Server failed!</strong> Please try again
+    </ngb-alert>
+</p>
+<p *ngIf="isSuccess">
+    <ngb-alert type="success" [dismissible]="true">
+        <strong>Success!</strong> Deatails has been updated successfully
+    </ngb-alert>
+</p>
 <div class="col sm-6 main">
-    <form>
+    <h4 *ngIf="isNewUser">Welcome to OzDistribution..!! <br>Please provide following information</h4>
+    <form [formGroup]="accountForm" (submit)="onSubmit()">
         <div class="form-group">
-            <label for="exampleInput">Contact Name</label>
-            <input type="text" class="form-control" id="exampleInput" placeholder="Please Enter Contact Name">
+            <label for="contactName">Contact Name</label>
+            <input type="text" class="form-control" formControlName="contactName"
+                placeholder="Please Enter Contact Name">
+            <span *ngIf="accountForm.get('contactName')?.errors?.required && accountForm.get('contactName')?.touched"
+                class="error">contact Name is required</span>
         </div>
         <div class="form-group">
-            <label for="exampleInput">Business Name</label>
-            <input type="text" class="form-control" id="exampleInput" placeholder="Please Enter Business Name">
+            <label for="businessName">Business Name</label>
+            <input type="text" class="form-control" formControlName="businessName"
+                placeholder="Please Enter Business Name">
+            <span *ngIf="accountForm.get('businessName')?.errors?.required && accountForm.get('businessName')?.touched"
+                class="error">business Name is required</span>
         </div>
         <div class="form-group">
-            <label for="exampleInput">ABN</label>
-            <input type="text" class="form-control" id="exampleInput" placeholder="Please Enter ABN">
+            <label for="abn">ABN</label>
+            <input type="number" class="form-control" formControlName="abn" placeholder="Please Enter ABN">
+            <span *ngIf="accountForm.get('abn')?.errors?.required && accountForm.get('abn')?.touched" class="error">ABN
+                is required</span>
         </div>
         <div class="form-group">
-            <label for="exampleInput">Phone</label>
-            <input type="number" class="form-control" id="exampleInput" placeholder="Please enter contact detail">
+            <label for="phone">Contact number</label>
+            <input type="text" class="form-control" formControlName="phone" placeholder="Please enter phone number">
+            <span *ngIf="accountForm.get('phone')?.errors?.required && accountForm.get('phone')?.touched"
+                class="error">phone numer is required</span>
         </div>
         <div class="form-group">
-            <label for="exampleInput">Street Address</label>
-            <input type="text" class="form-control" id="exampleInput" placeholder="Please Enter Street Address">
+            <label for="streetAddress">Street Address</label>
+            <input type="text" class="form-control" formControlName="streetAddress"
+                placeholder="Please Enter Street Address">
+            <span
+                *ngIf="accountForm.get('streetAddress')?.errors?.required && accountForm.get('streetAddress')?.touched"
+                class="error">street Address is required</span>
         </div>
         <div class="form-group">
-            <label for="exampleInput">City</label>
-            <input type="text" class="form-control" id="exampleInput" placeholder="Please Enter City">
+            <label for="city">City</label>
+            <input type="text" class="form-control" formControlName="city" placeholder="Please Enter City Name">
+            <span *ngIf="accountForm.get('city')?.errors?.required && accountForm.get('city')?.touched"
+                class="error">city name is required</span>
         </div>
         <div class="form-group">
-            <label for="exampleInput">State</label>
-            <input type="text" class="form-control" id="exampleInput" placeholder="Please Enter State">
+            <label for="state">State</label>
+            <input type="text" class="form-control" formControlName="state" placeholder="Please Enter State">
+            <span *ngIf="accountForm.get('state')?.errors?.required && accountForm.get('state')?.touched"
+                class="error">please add state (exp. NSW)</span>
         </div>
         <div class="form-group">
-            <label for="exampleInput">Postcode</label>
-            <input type="number" class="form-control" id="exampleInput" placeholder="Please Enter Postcode">
+            <label for="postcode">Postcode</label>
+            <input type="number" class="form-control" formControlName="postcode" placeholder="Please Enter Postcode">
+            <span *ngIf="accountForm.get('postcode')?.errors?.required && accountForm.get('postcode')?.touched"
+                class="error">postcode is required</span>
         </div>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-primary" *ngIf="isNewUser; else update"
+            [disabled]="accountForm.invalid">Continue</button>
+        <ng-template #update>
+            <button type="submit" class="btn btn-primary" [disabled]="accountForm.invalid">Update</button>
+        </ng-template>
     </form>
 </div>
