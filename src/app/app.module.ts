@@ -23,6 +23,8 @@ import { OrderDetailComponent } from './components/account/order-detail/order-de
 import { AddProductComponent } from './components/account/admin/add-product/add-product.component';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { AdminAccountComponent } from './components/account/admin/admin-account/admin-account.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { AdminAccountComponent } from './components/account/admin/admin-account/
     MdbModule,
     BrowserAnimationsModule,
     NgbModule,
-    ColorPickerModule
+    ColorPickerModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

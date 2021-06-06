@@ -9,3 +9,15 @@ div {
     padding-top: 2%;
     padding-bottom: 2%;
 }
+
+input.ng-invalid {
+    border-left: 5px solid red;
+}
+
+input.ng-valid {
+    border-left: 5px solid green;
+}
+
+.error{
+    color: red
+}
