@@ -9,5 +9,5 @@ export interface IAccount {
     state: string,
     postcode: number,
     country: string,
-    user: null
+    user?: null
 }
