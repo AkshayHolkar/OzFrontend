@@ -1,16 +1,37 @@
-<form>
+<p *ngIf="isFail">
+    <ngb-alert type="danger" [dismissible]="true">
+        <strong>Registration failed!</strong> User with this email address already exist.
+    </ngb-alert>
+</p>
+<form [formGroup]="registerForm" (submit)="onSubmit()">
     <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-            placeholder="Enter email">
+        <label for="email">Email address</label>
+        <input type="email" email class="form-control" formControlName="Email" placeholder="Enter email">
+        <span *ngIf="registerForm.get('Email')?.invalid && registerForm.get('Email')?.touched" class="error">Email is
+            not valid</span>
     </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    <div formGroupName="Passwords">
+        <div class="form-group">
+            <label for="Password">Password</label>
+            <input type="password" class="form-control" formControlName="Password" placeholder="Password">
+            <span
+                *ngIf="registerForm.get('Passwords.Password')?.errors?.required && registerForm.get('Passwords.Password')?.touched"
+                class="error">Password is required</span>
+            <span
+                *ngIf="registerForm.get('Passwords.Password')?.errors?.minlength && registerForm.get('Passwords.Password')?.touched"
+                class="error">Minimum 4 characters required</span>
+        </div>
+        <div class="form-group">
+            <label for="ConfirmPassword">Confirm password</label>
+            <input type="password" class="form-control" formControlName="ConfirmPassword"
+                placeholder="Re-enter Password">
+            <span
+                *ngIf="registerForm.get('Passwords.ConfirmPassword')?.errors?.required && registerForm.get('Passwords.ConfirmPassword')?.touched"
+                class="error">Confirm password is required</span>
+            <span
+                *ngIf="registerForm.get('Passwords.ConfirmPassword')?.errors?.passwordMissMatch && registerForm.get('Passwords.ConfirmPassword')?.touched"
+                class="error">Password does not match</span>
+        </div>
     </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Confirm password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Confirm password">
-    </div>
-    <button type="submit" class="btn btn-primary">Register</button>
+    <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">Register</button>
 </form>
