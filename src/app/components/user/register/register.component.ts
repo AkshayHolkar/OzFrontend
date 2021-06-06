@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
     this.service.register(this.registerForm.value).subscribe(
       (res: any) => {
         localStorage.setItem('token', res.token);
-        this.router.navigateByUrl("/user/profile");
+        this.router.navigateByUrl("/user/account");
       },
       err => {
         if (err.status == 400) {

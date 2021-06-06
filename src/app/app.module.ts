@@ -15,14 +15,14 @@ import { RegisterComponent } from './components/user/register/register.component
 import { CartCardComponent } from './components/cart/cart-card/cart-card.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ProductDetailComponent } from './components/Product/product-detail/product-detail.component';
-import { AccountComponent } from './components/account/account.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ProfileComponent } from './components/account/profile/profile.component';
-import { OrderComponent } from './components/account/order/order.component';
-import { OrderDetailComponent } from './components/account/order-detail/order-detail.component';
-import { AddProductComponent } from './components/account/admin/add-product/add-product.component';
+import { AccountComponent } from './components/dashboard/account/account.component';
+import { OrderComponent } from './components/dashboard/order/order.component';
+import { OrderDetailComponent } from './components/dashboard/order-detail/order-detail.component';
+import { AddProductComponent } from './components/dashboard/admin/add-product/add-product.component';
 import { ColorPickerModule } from 'ngx-color-picker';
-import { AdminAccountComponent } from './components/account/admin/admin-account/admin-account.component';
+import { AdminDashboardComponent } from './components/dashboard/admin/admin-dashboard/admin-dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -39,12 +39,12 @@ import { HttpClientModule } from '@angular/common/http';
     CartCardComponent,
     CartComponent,
     ProductDetailComponent,
+    DashboardComponent,
     AccountComponent,
-    ProfileComponent,
     OrderComponent,
     OrderDetailComponent,
     AddProductComponent,
-    AdminAccountComponent,
+    AdminDashboardComponent,
   ],
   imports: [
     BrowserModule,
