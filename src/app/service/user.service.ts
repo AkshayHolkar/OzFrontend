@@ -10,6 +10,14 @@ export class UserService {
 
   readonly baseURI = "https://localhost:5001/api";
 
+  register(formData: any) {
+    var body = {
+      Email: formData.Email,
+      Password: formData.Passwords.Password
+    };
+    return this.http.post(this.baseURI + '/Identity/Register', body);
+  }
+
   login(formData: any) {
     return this.http.post(this.baseURI + '/Identity/Login', formData);
   }
