@@ -1,3 +1,8 @@
+<p *ngIf="isFail">
+    <ngb-alert type="danger" [dismissible]="true">
+        <strong>server failed!</strong> Please try again
+    </ngb-alert>
+</p>
 <div class="col sm-6 main">
     <form [formGroup]="productForm" (submit)="onSubmit()">
         <div class="form-group">
@@ -48,29 +53,37 @@
                     </tr>
                 </thead>
                 <tbody>
-
                     <tr>
                         <td><input type="checkbox" formControlName="addC1"></td>
                         <td>Color 1:
-                            <input type="text" [(colorPicker)]="color" [style.background]="color"
-                                formControlName="color1" />
+                            <input type="text" [(colorPicker)]="color1" [style.background]="color1" />
+                        </td>
+                        <td>Available Quantity:
+                            <input type="number" class="form-control" formControlName="colorQ1"
+                                placeholder="Please Enter Available Quantity">
                         </td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" formControlName="addC2"></td>
-                        <td>Color 2: <input type="text" [(colorPicker)]="color" [style.background]="color"
-                                formControlName="color2" />
+                        <td>Color 2: <input type="text" [(colorPicker)]="color2" [style.background]="color2" />
+                        </td>
+                        <td>Available Quantity:
+                            <input type="number" class="form-control" formControlName="colorQ2"
+                                placeholder="Please Enter Available Quantity">
                         </td>
                     </tr>
                     <tr>
                         <td><input type="checkbox" formControlName="addC3"></td>
-                        <td>Color 3: <input type="text" [(colorPicker)]="color" [style.background]="color"
-                                formControlName="color3" />
+                        <td>Color 3: <input type="text" [(colorPicker)]="color3" [style.background]="color3" />
+                        </td>
+                        <td>Available Quantity:
+                            <input type="number" class="form-control" formControlName="colorQ3"
+                                placeholder="Please Enter Available Quantity">
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-primary">Save And Add Images</button>
     </form>
 </div>
