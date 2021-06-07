@@ -1,5 +1,5 @@
 export interface IProduct {
-    id: number,
+    id?: number,
     name: string,
     price: number,
     quantity: number,
@@ -7,5 +7,5 @@ export interface IProduct {
     status: boolean,
     categoryId: number,
     sizeNotApplicable: boolean,
-    ColorNotApplicable: boolean
+    colorNotApplicable: boolean
 }
