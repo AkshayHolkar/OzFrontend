@@ -25,15 +25,14 @@
         <div class="form-group">
             <label for="category">Select Category</label>
             <select name="category" formControlName="categoryId" class="form-control">
-                <option *ngFor="let c of categories" [value]="c.name">{{c.name}}</option>
+                <option *ngFor="let c of categories" [value]="c.id">{{c.name}}</option>
             </select>
         </div>
         <div class="form-group">
             <label for="availableSize" class="col-xl-3 col-sm-4 mb-0">Available Size:</label>
             <input type="checkbox" formControlName="sizeNotApplicable"> <span>Not Applicable</span>
-            <select name="Size" formControlName="" class="form-control">
-                <option value="XS">XS</option>
-                <option value="S">S</option>
+            <select name="Size" formControlName="size" class="form-control">
+                <option *ngFor="let s of sizes" [value]="s.name">{{s.name}}</option>
             </select>
         </div>
         <div class="form-group">

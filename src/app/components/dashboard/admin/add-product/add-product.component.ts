@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ICategory } from 'src/app/models/category';
+import { ISize } from 'src/app/models/size';
 import { CategoryService } from 'src/app/service/category.service';
+import { SizeService } from 'src/app/service/size.service';
 
 @Component({
   selector: 'app-add-product',
@@ -30,17 +32,30 @@ export class AddProductComponent implements OnInit {
 
   color: string = '';
   categories: ICategory[] = [];
+  sizes: ISize[] = [];
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService, private sizeService: SizeService) { }
 
   ngOnInit(): void {
     this.getCategory();
+    this.getSize();
   }
 
   getCategory() {
     this.categoryService.getCategories().subscribe(
       (categories) => {
         this.categories = categories;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  getSize() {
+    this.sizeService.getSizes().subscribe(
+      (sizes) => {
+        this.sizes = sizes;
       },
       error => {
         console.log(error);
