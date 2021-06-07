@@ -15,4 +15,8 @@ export class SizeService {
   getSizes(): Observable<ISize[]> {
     return this.http.get<ISize[]>(this.baseURI + "/Sizes");
   }
+
+  addProductSize(formData: any) {
+    return this.http.post(this.baseURI + '/ProductSizes', formData);
+  }
 }
