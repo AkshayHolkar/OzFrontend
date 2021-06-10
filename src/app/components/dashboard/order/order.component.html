@@ -2,24 +2,20 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">Order number</th>
                 <th scope="col">Date</th>
                 <th scope="col">Order Status</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>
-                    23445
-                </td>
-                <td>17/01/1111</td>
-                <td>Completed</td>
+
+            <tr *ngFor="let order of orders">
+                <th>
+                    <b (click)="orderDetail(order.id || 0)">{{order.id}}</b>
+                </th>
+                <td>{{order.dateCreation | date:'dd-MM-yyyy'}}</td>
+                <td>{{order.orderStatus}}</td>
             </tr>
         </tbody>
     </table>
 </div>
-
-
-<app-order-detail></app-order-detail>
