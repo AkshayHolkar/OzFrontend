@@ -1,0 +1,41 @@
+<div class="container main">
+    <div class="container contact">
+        <div class="row">
+            <div class="col-sm">
+                Bussiness Name: {{customerDetail.businessName}}<br>
+                Contact Name: {{customerDetail.contactName}}
+            </div>
+            <div class="col-sm">
+                Contact no. {{customerDetail.phone}}
+            </div>
+            <div class="col-sm">
+                Address: {{customerDetail.streetAddress}}<br>
+                {{customerDetail.city}}
+            </div>
+        </div>
+    </div>
+    <h4>Order no. {{orderId}}</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Product Name color </th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of orderDetail">
+                <td scope="row">
+                    {{item.productName}}
+                </td>
+                <td> {{item.quantity}}</td>
+                <td>${{item.totalPrice}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row totalPrice">
+        <div class="col-8">Total:</div>
+        <div class="col-4">${{total}}</div>
+    </div>
+    <button (click)="backClicked()" type="button" class="btn btn-primary back-button">Back</button>
+</div>
