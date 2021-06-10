@@ -6,5 +6,5 @@ export interface IOrderDetail {
     color?: string,
     size?: string,
     quantity: number,
-    totlaPrice: number,
+    totalPrice: number
 }
