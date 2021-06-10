@@ -16,8 +16,8 @@ export class OrderService {
     return this.http.get<IOrder[]>(this.baseURI + "/Orders");
   }
 
-  getOrder(id: number): Observable<IOrder[]> {
-    return this.http.get<IOrder[]>(this.baseURI + "/Orders" + id);
+  getOrder(id: number): Observable<IOrder> {
+    return this.http.get<IOrder>(this.baseURI + "/Orders" + id);
   }
 
   addOrder(formData: any) {
