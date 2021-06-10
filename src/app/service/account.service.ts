@@ -16,6 +16,10 @@ export class AccountService {
     return this.http.get<IAccount>(this.baseURI + "/Accounts");
   }
 
+  getCustomerAccount(id: string): Observable<IAccount> {
+    return this.http.get<IAccount>(this.baseURI + "/Accounts/" + id);
+  }
+
   addAccount(formData: any) {
     return this.http.post(this.baseURI + '/Accounts', formData);
   }
