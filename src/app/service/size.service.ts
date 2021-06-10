@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { IProductSize } from '../models/productSize';
 import { ISize } from '../models/size';
 
 @Injectable({
@@ -19,4 +20,9 @@ export class SizeService {
   addProductSize(formData: any) {
     return this.http.post(this.baseURI + '/ProductSizes', formData);
   }
+
+  getProductSizes(productId: number): Observable<IProductSize[]> {
+    return this.http.get<IProductSize[]>(this.baseURI + "/ProductSizes?productId=" + productId);
+  }
+
 }
