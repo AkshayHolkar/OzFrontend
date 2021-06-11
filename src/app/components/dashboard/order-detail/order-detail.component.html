@@ -11,7 +11,11 @@
         <tbody>
             <tr *ngFor="let item of orderDetail">
                 <td scope="row">
-                    {{item.productName}}
+                    {{item.productName}}<br>
+                    <p *ngIf="!(item.size == '' || item.size == null)">Size: {{item.size}}</p>
+                    <div *ngIf="!(item.color == '' || item.color == null)"> Color: <h1
+                            [style.background-color]="item.color"></h1>
+                    </div>
                 </td>
                 <td> {{item.quantity}}</td>
                 <td>${{item.totalPrice}}</td>
