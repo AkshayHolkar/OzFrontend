@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container main">
     <div class="row justify-content-md-center">
-        <div class="col-md-auto">
-            <app-product-card></app-product-card>
+        <div *ngFor="let product of products" class="col-md-auto">
+            <app-product-card [product]="product"></app-product-card>
         </div>
     </div>
 </div>
