@@ -116,7 +116,7 @@ export class AddProductComponent implements OnInit {
           this.addProductColor(this.product.id || 0);
         }
 
-        this.router.navigateByUrl("products");
+        this.router.navigate(['admin/addImages', this.product.id]);
       },
       err => {
         if (err.status == 400) {
