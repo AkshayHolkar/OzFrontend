@@ -122,6 +122,7 @@ export class ProductDetailComponent implements OnInit {
     this.cart.quantity = this.productDetailForm.controls.quantity.value;
     this.cart.maxLimit = this.product.quantity;
     this.cart.price = this.product.price;
+    this.cart.imageUrl = this.images.find(i => i.main == true)?.imageScr || '';
 
     this.cartService.addCart(this.cart).subscribe(
       (result) => {
