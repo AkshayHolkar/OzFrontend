@@ -16,6 +16,10 @@ export class ImageService {
     return this.http.get<IImage[]>(this.baseURI + "/Images?productId=" + productId);
   }
 
+  getFetureImage(productId: number): Observable<IImage> {
+    return this.http.get<IImage>(this.baseURI + "/Images/" + productId);
+  }
+
   addImage(formData: any) {
     return this.http.post(this.baseURI + '/Images', formData);
   }
