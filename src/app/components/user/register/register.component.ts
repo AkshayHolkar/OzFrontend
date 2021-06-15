@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DataSharingService } from 'src/app/service/data-sharing.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -32,7 +33,7 @@ export class RegisterComponent implements OnInit {
 
   isFail = false;
 
-  constructor(public service: UserService, private router: Router, private fb: FormBuilder) { }
+  constructor(public service: UserService, private router: Router, private fb: FormBuilder, private dataSharingService: DataSharingService) { }
 
   ngOnInit(): void {
   }
@@ -40,6 +41,7 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     this.service.register(this.registerForm.value).subscribe(
       (res: any) => {
+        this.dataSharingService.isUserLoggedIn.next(true);
         localStorage.setItem('token', res.token);
         this.router.navigateByUrl("/user/account");
       },

@@ -3,11 +3,12 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { tap } from "rxjs/operators";
+import { DataSharingService } from "../service/data-sharing.service";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-    constructor(private router: Router) { }
+    constructor(private router: Router, private dataSharingService: DataSharingService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         if (localStorage.getItem('token') != null) {
@@ -19,6 +20,7 @@ export class AuthInterceptor implements HttpInterceptor {
                     success => { },
                     error => {
                         if (error.status == 401) {
+                            this.dataSharingService.isUserLoggedIn.next(false);
                             localStorage.removeItem('token');
                             this.router.navigateByUrl('/user/login');
                         }

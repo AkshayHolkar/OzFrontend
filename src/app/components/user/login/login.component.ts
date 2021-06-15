@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DataSharingService } from 'src/app/service/data-sharing.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   })
 
   isFail = false;
-  constructor(private service: UserService, private router: Router, private fb: FormBuilder) { }
+
+  constructor(private service: UserService, private router: Router, private fb: FormBuilder, private dataSharingService: DataSharingService) { }
 
   ngOnInit(): void {
   }
@@ -25,6 +27,7 @@ export class LoginComponent implements OnInit {
 
     this.service.login(this.loginForm.value).subscribe(
       (res: any) => {
+        this.dataSharingService.isUserLoggedIn.next(true);
         localStorage.setItem('token', res.token);
         this.router.navigate(["products"]);
       },
