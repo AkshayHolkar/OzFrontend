@@ -60,7 +60,7 @@ export class AdminOrderComponent implements OnInit {
     );
   }
 
-  orderDetail(id: number) {
-    this.router.navigate(['admin/orderDetail', id]);
+  orderDetail(id: number, customerId: string) {
+    this.router.navigate(['admin/orderDetail', id, customerId]);
   }
 }
