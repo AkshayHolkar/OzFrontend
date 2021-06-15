@@ -1,19 +1,34 @@
+<p *ngIf="isSuccess">
+    <ngb-alert type="success" [dismissible]="true">
+        <strong>updated quantity!</strong>
+    </ngb-alert>
+</p>
 <div class="card main">
-    <div class="card-body">
-        <div class="row">
-            <div class="col">
-                <img src="..." alt="..." class="img-thumbnail">
-            </div>
-            <div class="col-4">
-                Product name
-            </div>
-            <div class="col">
-                <input type="number" id="quantity" name="quantity" min="1" max="5">
-            </div>
-            <div class="col">
-                <button type="button" class="btn btn-info">Update</button>
-                <i class="fas fa-trash delete"></i>
+    <form [formGroup]="cartForm" (submit)="onSubmit()">
+        <div class="card-body">
+            <div class="row">
+                <div class="col">
+                    <img [src]="cart.imageUrl || ''" alt="product Image" class="img-thumbnail">
+                </div>
+                <div class="col-4">
+                    {{cart.productName}}<br>
+                    <p *ngIf="!(cart.size == '' || cart.size == null)">Size: {{cart.size}}</p>
+                    <div *ngIf="!(cart.color == '' || cart.color == null)"> Color: <h1
+                            [style.background-color]="cart.color"> </h1>
+                    </div>
+                </div>
+                <div class="col form-group">
+                    <input formControlName="quantity" type="number" id="quantity" name="quantity" min="1"
+                        [max]="cart.maxLimit" value="2">
+                </div>
+                <div class="col">
+                    <p>${{cart.price}} Total:<b>${{total}}</b></p>
+                </div>
+                <div class="col">
+                    <button type="sumit" class="btn btn-info">Update</button>
+                    <i (click)="remove()" class="fas fa-trash delete"></i>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
