@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ICart } from 'src/app/models/cart';
 import { CartService } from 'src/app/service/cart.service';
@@ -9,6 +9,8 @@ import { CartService } from 'src/app/service/cart.service';
   styleUrls: ['./cart-card.component.scss']
 })
 export class CartCardComponent implements OnInit {
+
+  @Output() updateCart = new EventEmitter<string>();
 
   @Input() cart: ICart = {
     id: 0,
@@ -40,7 +42,7 @@ export class CartCardComponent implements OnInit {
 
     this.cartService.updateCart(this.cart.id || 0, this.cart).subscribe(
       result => {
-        window.location.reload();
+        this.updateCart.next();
         this.isSuccess = true;
       },
       error => {
@@ -52,7 +54,7 @@ export class CartCardComponent implements OnInit {
   remove() {
     this.cartService.deleteCart(this.cart.id || 0).subscribe(
       result => {
-        window.location.reload();
+        this.updateCart.next();
       },
       error => {
         console.log(error);

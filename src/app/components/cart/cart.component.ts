@@ -48,6 +48,7 @@ export class CartComponent implements OnInit {
   }
 
   getTotal() {
+    this.total = 0;
     for (let cart of this.carts) {
       this.total += cart.price * cart.quantity;
     }
@@ -94,5 +95,9 @@ export class CartComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+
+  update() {
+    this.ngOnInit();
   }
 }
