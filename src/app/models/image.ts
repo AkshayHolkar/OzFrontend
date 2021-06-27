@@ -3,6 +3,6 @@ export interface IImage {
     name?: string,
     main: boolean,
     productId: number,
-    imageFile: File,
+    imageFile?: File,
     imageScr?: string
 }
