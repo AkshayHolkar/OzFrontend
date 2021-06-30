@@ -16,6 +16,7 @@ export class CartComponent implements OnInit {
 
   carts: ICart[] = [];
   total: number = 0;
+  isEmpty = true;
 
   newOrder: IOrder = {
     dateCreation: new Date()
@@ -39,6 +40,7 @@ export class CartComponent implements OnInit {
     this.cartService.getcarts().subscribe(
       (result) => {
         this.carts = result;
+        this.isEmpty = this.carts.length == 0;
         this.getTotal();
       },
       (error) => {

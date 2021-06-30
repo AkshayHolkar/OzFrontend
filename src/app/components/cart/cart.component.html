@@ -9,6 +9,7 @@
     <div class="col-8">Total:</div>
     <div class="col-4">${{total}}</div>
   </div>
-  <button (click)="order()" type="button" class="btn btn-success order-button">Place
+  <button [disabled]="isEmpty" (click)="order()" type="button" class="btn
+    btn-success order-button">Place
     Order</button>
 </div>
