@@ -10,7 +10,7 @@ export class ColorService {
 
   constructor(private http: HttpClient) { }
 
-  readonly baseURI = "https://localhost:5001/api/v1";
+  readonly baseURI = "https://ozdistributionapi.azurewebsites.net/api/v1";
 
   getColors(productId: number): Observable<IColor[]> {
     return this.http.get<IColor[]>(this.baseURI + "/Colours?productId=" + productId);

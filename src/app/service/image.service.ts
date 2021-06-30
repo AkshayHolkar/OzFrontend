@@ -10,7 +10,7 @@ export class ImageService {
 
   constructor(private http: HttpClient) { }
 
-  readonly baseURI = "https://localhost:5001/api/v1";
+  readonly baseURI = "https://ozdistributionapi.azurewebsites.net/api/v1";
 
   getImages(productId: number): Observable<IImage[]> {
     return this.http.get<IImage[]>(this.baseURI + "/Images?productId=" + productId);

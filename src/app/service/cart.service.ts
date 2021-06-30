@@ -10,7 +10,7 @@ export class CartService {
 
   constructor(private http: HttpClient) { }
 
-  readonly baseURI = "https://localhost:5001/api/v1";
+  readonly baseURI = "https://ozdistributionapi.azurewebsites.net/api/v1";
 
   getcarts(): Observable<ICart[]> {
     return this.http.get<ICart[]>(this.baseURI + "/Carts");

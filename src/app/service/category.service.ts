@@ -10,7 +10,7 @@ export class CategoryService {
 
   constructor(private http: HttpClient) { }
 
-  readonly baseURI = "https://localhost:5001/api/v1";
+  readonly baseURI = "https://ozdistributionapi.azurewebsites.net/api/v1";
 
   getCategories(): Observable<ICategory[]> {
     return this.http.get<ICategory[]>(this.baseURI + "/Categories");

@@ -10,7 +10,7 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  readonly baseURI = "https://localhost:5001/api/v1";
+  readonly baseURI = "https://ozdistributionapi.azurewebsites.net/api/v1";
 
   getProducts(): Observable<IProduct[]> {
     return this.http.get<IProduct[]>(this.baseURI + "/Products");
@@ -26,5 +26,9 @@ export class ProductService {
 
   updateProduct(id: number, formData: any) {
     return this.http.put(this.baseURI + '/Products/' + id, formData);
+  }
+
+  removeProduct(id: number) {
+    return this.http.delete(this.baseURI + '/Products/' + id);
   }
 }

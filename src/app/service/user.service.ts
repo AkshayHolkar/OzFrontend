@@ -8,7 +8,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  readonly baseURI = "https://localhost:5001/api";
+  readonly baseURI = "https://ozdistributionapi.azurewebsites.net/api";
 
   register(formData: any) {
     var body = {

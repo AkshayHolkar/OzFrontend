@@ -10,7 +10,7 @@ export class OrderDetailService {
 
   constructor(private http: HttpClient) { }
 
-  readonly baseURI = "https://localhost:5001/api/v1";
+  readonly baseURI = "https://ozdistributionapi.azurewebsites.net/api/v1";
 
   getOrderDetail(orderId: number): Observable<IOrderDetail[]> {
     return this.http.get<IOrderDetail[]>(this.baseURI + "/OrderDetails?orderId=" + orderId);

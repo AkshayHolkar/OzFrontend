@@ -10,7 +10,7 @@ export class AccountService {
 
   constructor(private http: HttpClient) { }
 
-  readonly baseURI = "https://localhost:5001/api/v1";
+  readonly baseURI = "https://ozdistributionapi.azurewebsites.net/api/v1";
 
   getaccount(): Observable<IAccount> {
     return this.http.get<IAccount>(this.baseURI + "/Accounts");
