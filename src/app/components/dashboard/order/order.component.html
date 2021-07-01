@@ -12,7 +12,7 @@
 
       <tr *ngFor="let order of orders">
         <th>
-          <b (click)="orderDetail(order.id || 0)">{{order.id}}</b>
+          <b (click)="orderDetail(order.id || 0, order.customerId || '')">{{order.id}}</b>
         </th>
         <td>{{order.dateCreation | date:'dd-MM-yyyy'}}</td>
         <td *ngIf="!isAdmin;else admin">{{order.orderStatus}}</td>

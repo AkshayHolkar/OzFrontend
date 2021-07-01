@@ -54,9 +54,9 @@ export class OrderComponent implements OnInit {
     );
   }
 
-  orderDetail(id: number) {
+  orderDetail(id: number, customerId: string) {
 
-    this.router.navigate(['user/orderDetail', id]);
+    this.router.navigate(['user/orderDetail', id, customerId]);
   }
 
   onSubmit(order: IOrder) {
