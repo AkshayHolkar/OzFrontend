@@ -1,6 +1,7 @@
 <div class="card" style="width: 18rem;" [routerLink]="['/product',product.id]">
-    <img src={{url}} alt="Product Image" style="width:100%">
-    <h1>{{product.name}}</h1>
-    <p class="price">${{product.price}}</p>
-    <p>{{(product.description.length>70)? (product.description | slice:0:70)+'...': (product.description)}}</p>
+  <img src={{url}} alt="Product Image" style="width:100%">
+  <h1>{{product.name}}</h1>
+  <p class="price" [hidden]="!isLogin || !isApproved">${{product.price}}</p>
+  <p>{{(product.description.length>30)? (product.description |
+    slice:0:30)+'...': (product.description)}}</p>
 </div>

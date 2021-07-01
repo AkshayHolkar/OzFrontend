@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IImage } from 'src/app/models/image';
 import { IProduct } from 'src/app/models/product';
+import { DataSharingService } from 'src/app/service/data-sharing.service';
 import { ImageService } from 'src/app/service/image.service';
 
 @Component({
@@ -22,8 +23,17 @@ export class ProductCardComponent implements OnInit {
   };
 
   url = '';
+  isLogin: boolean = false;
+  isApproved: boolean = false;
 
-  constructor(private imageService: ImageService) { }
+  constructor(private imageService: ImageService, private dataSharingService: DataSharingService) {
+    this.dataSharingService.isUserLoggedIn.subscribe(value => {
+      this.isLogin = value;
+    });
+    this.dataSharingService.isUserApproved.subscribe(value => {
+      this.isApproved = value;
+    });
+  }
 
   ngOnInit(): void {
     this.getFetureImage();

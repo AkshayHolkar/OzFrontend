@@ -8,6 +8,7 @@ import { IProduct } from 'src/app/models/product';
 import { IProductSize } from 'src/app/models/productSize';
 import { CartService } from 'src/app/service/cart.service';
 import { ColorService } from 'src/app/service/color.service';
+import { DataSharingService } from 'src/app/service/data-sharing.service';
 import { ImageService } from 'src/app/service/image.service';
 import { ProductService } from 'src/app/service/product.service';
 import { SizeService } from 'src/app/service/size.service';
@@ -52,8 +53,17 @@ export class ProductDetailComponent implements OnInit {
   isSuccess = false;
   url = '';
   productId: number = 0;
+  isLogin: boolean = false;
+  isApproved: boolean = false;
 
-  constructor(private productService: ProductService, private route: ActivatedRoute, private colorService: ColorService, private sizeService: SizeService, private cartService: CartService, private imageService: ImageService) { }
+  constructor(private productService: ProductService, private route: ActivatedRoute, private colorService: ColorService, private sizeService: SizeService, private cartService: CartService, private imageService: ImageService, private dataSharingService: DataSharingService) {
+    this.dataSharingService.isUserLoggedIn.subscribe(value => {
+      this.isLogin = value;
+    });
+    this.dataSharingService.isUserApproved.subscribe(value => {
+      this.isApproved = value;
+    });
+  }
 
   ngOnInit(): void {
     this.getProductDetail();
