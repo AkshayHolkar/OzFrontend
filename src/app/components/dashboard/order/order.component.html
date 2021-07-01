@@ -1,21 +1,34 @@
 <div class="container">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">Order number</th>
-                <th scope="col">Date</th>
-                <th scope="col">Order Status</th>
-            </tr>
-        </thead>
-        <tbody>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Order number</th>
+        <th scope="col">Date</th>
+        <th scope="col">Order Status</th>
+        <th *ngIf="isAdmin" scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
 
-            <tr *ngFor="let order of orders">
-                <th>
-                    <b (click)="orderDetail(order.id || 0)">{{order.id}}</b>
-                </th>
-                <td>{{order.dateCreation | date:'dd-MM-yyyy'}}</td>
-                <td>{{order.orderStatus}}</td>
-            </tr>
-        </tbody>
-    </table>
+      <tr *ngFor="let order of orders">
+        <th>
+          <b (click)="orderDetail(order.id || 0)">{{order.id}}</b>
+        </th>
+        <td>{{order.dateCreation | date:'dd-MM-yyyy'}}</td>
+        <td *ngIf="!isAdmin;else admin">{{order.orderStatus}}</td>
+        <ng-template #admin><td>
+            <b>{{order.orderStatus}}</b>
+            <select name="orderStatus" [(ngModel)]="selectedOption">
+              <option *ngFor="let s of orderStatus" [value]="s.name"
+                [selected]="s.name == order.orderStatus">
+                {{s.name}}</option>
+            </select>
+          </td>
+        </ng-template>
+        <td *ngIf="isAdmin">
+          <button (click)="onSubmit(order)" class="btn btn-info">Update</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

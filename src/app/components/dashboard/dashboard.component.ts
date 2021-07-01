@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataSharingService } from 'src/app/service/data-sharing.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  isAdmin = false;
+
+  constructor(private dataSharingService: DataSharingService) {
+    this.dataSharingService.isUserAdmin.subscribe(value => {
+      this.isAdmin = value;
+    })
+  }
 
   ngOnInit(): void {
   }
-
 }

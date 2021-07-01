@@ -11,6 +11,18 @@
       <app-order></app-order>
     </ng-template>
   </ng-container>
+  <ng-container *ngIf="isAdmin" ngbNavItem>
+    <a ngbNavLink>Add Product</a>
+    <ng-template ngbNavContent>
+      <app-add-product></app-add-product>
+    </ng-template>
+  </ng-container>
+  <ng-container *ngIf="isAdmin" ngbNavItem>
+    <a ngbNavLink>Remove Product</a>
+    <ng-template ngbNavContent>
+      <app-edit-products></app-edit-products>
+    </ng-template>
+  </ng-container>
 </nav>
 
 <div [ngbNavOutlet]="nav" class="mt-2"></div>
