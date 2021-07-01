@@ -6,4 +6,5 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class DataSharingService {
   public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public isUserApproved: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 }
