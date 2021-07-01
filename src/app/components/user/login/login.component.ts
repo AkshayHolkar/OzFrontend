@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
       (res: any) => {
         this.dataSharingService.isUserLoggedIn.next(true);
         localStorage.setItem('token', res.token);
-        this.isApprovedUser(res.token);
+        this.GetUserRoles(res.token);
         this.router.navigate(["products"]);
       },
       err => {
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  isApprovedUser(token: any) {
+  GetUserRoles(token: any) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     var jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
@@ -51,5 +51,6 @@ export class LoginComponent implements OnInit {
     }).join(''));
     this.roles = JSON.parse(jsonPayload).role;
     this.dataSharingService.isUserApproved.next(this.roles.includes('Approved'));
+    this.dataSharingService.isUserAdmin.next(this.roles.includes('Admin'));
   };
 }
