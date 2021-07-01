@@ -22,11 +22,13 @@ import { OrderComponent } from './components/dashboard/order/order.component';
 import { OrderDetailComponent } from './components/dashboard/order-detail/order-detail.component';
 import { AddProductComponent } from './components/dashboard/admin/add-product/add-product.component';
 import { ColorPickerModule } from 'ngx-color-picker';
-import { AdminDashboardComponent } from './components/dashboard/admin/admin-dashboard/admin-dashboard.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserService } from './service/user.service';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { AddImagesComponent } from './components/dashboard/admin/add-images/add-images.component';
+import { OrderPlaceComponent } from './components/cart/order-place/order-place.component';
+import { EditProductsComponent } from './components/dashboard/admin/edit-products/edit-products.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     OrderComponent,
     OrderDetailComponent,
     AddProductComponent,
-    AdminDashboardComponent,
+    AddImagesComponent,
+    OrderPlaceComponent,
+    EditProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     NgbModule,
     ColorPickerModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [UserService,
     {
