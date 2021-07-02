@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IAccount } from 'src/app/models/account';
 import { AccountService } from 'src/app/service/account.service';
+import { DataSharingService } from 'src/app/service/data-sharing.service';
 
 @Component({
   selector: 'app-account',
@@ -23,7 +24,8 @@ export class AccountComponent implements OnInit {
     country: new FormControl('')
   });
 
-  account: IAccount = { userId: '',
+  account: IAccount = {
+    userId: '',
     contactName: '',
     businessName: '',
     abn: 0,
@@ -38,7 +40,7 @@ export class AccountComponent implements OnInit {
   isFail = false;
   isSuccess = false;
 
-  constructor(private accountService: AccountService, private router: Router) { }
+  constructor(private accountService: AccountService, private router: Router, private dataSharingService: DataSharingService) { }
 
   ngOnInit() {
     this.getAccount();
@@ -84,6 +86,7 @@ export class AccountComponent implements OnInit {
     if (this.isNewUser) {
       this.accountService.addAccount(this.account).subscribe(
         (res: any) => {
+          this.dataSharingService.isUserInRegistrationProccess.next(false);
           this.router.navigateByUrl("products");
         },
         err => {
@@ -96,7 +99,7 @@ export class AccountComponent implements OnInit {
       );
     } else {
       this.accountService.updateAccount(this.account.userId, this.account).subscribe(
-        (res: any) => { 
+        (res: any) => {
           this.isSuccess = true;
         },
         err => {

@@ -8,4 +8,5 @@ export class DataSharingService {
   public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public isUserApproved: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public isUserAdmin: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public isUserInRegistrationProccess: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 }

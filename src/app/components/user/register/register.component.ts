@@ -42,6 +42,7 @@ export class RegisterComponent implements OnInit {
     this.service.register(this.registerForm.value).subscribe(
       (res: any) => {
         this.dataSharingService.isUserLoggedIn.next(true);
+        this.dataSharingService.isUserInRegistrationProccess.next(true);
         localStorage.setItem('token', res.token);
         this.router.navigateByUrl("/user/account");
       },
