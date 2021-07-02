@@ -16,6 +16,10 @@ export class AccountService {
     return this.http.get<IAccount>(this.baseURI + "/Accounts");
   }
 
+  getAllAccounts(unused: boolean): Observable<IAccount[]> {
+    return this.http.get<IAccount[]>(this.baseURI + "/Accounts/" + unused + "/" + unused);
+  }
+
   getCustomerAccount(id: string): Observable<IAccount> {
     return this.http.get<IAccount>(this.baseURI + "/Accounts/" + id);
   }
