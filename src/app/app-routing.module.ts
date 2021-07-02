@@ -38,9 +38,10 @@ const routes: Routes = [
           postcode: 0,
           country: 'Australia',
           approved: true
-        }
+        },
+        canActivate: [AuthGuard]
       },
-      { path: 'addImages/:id', component: AddImagesComponent },
+      { path: 'addImages/:id', component: AddImagesComponent, canActivate: [AuthGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'success', component: OrderPlaceComponent }
