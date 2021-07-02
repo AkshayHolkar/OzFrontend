@@ -11,6 +11,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { AddImagesComponent } from './components/dashboard/admin/add-images/add-images.component';
 import { OrderPlaceComponent } from './components/cart/order-place/order-place.component';
 import { OrderDetailComponent } from './components/dashboard/order-detail/order-detail.component';
+import { CustomerDetailComponent } from './components/dashboard/admin/customer-detail/customer-detail.component';
 
 const routes: Routes = [
   { path: '', component: ProductCardListComponent },
@@ -23,6 +24,22 @@ const routes: Routes = [
       { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
       { path: 'orderDetail/:id/:customerId', component: OrderDetailComponent, canActivate: [AuthGuard] },
+      {
+        path: 'customerDetail', component: CustomerDetailComponent,
+        data: {
+          userId: '',
+          contactName: '',
+          businessName: '',
+          abn: 0,
+          phone: '',
+          streetAddress: '',
+          city: '',
+          state: '',
+          postcode: 0,
+          country: 'Australia',
+          approved: true
+        }
+      },
       { path: 'addImages/:id', component: AddImagesComponent },
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },

@@ -29,6 +29,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { AddImagesComponent } from './components/dashboard/admin/add-images/add-images.component';
 import { OrderPlaceComponent } from './components/cart/order-place/order-place.component';
 import { EditProductsComponent } from './components/dashboard/admin/edit-products/edit-products.component';
+import { CustomerListComponent } from './components/dashboard/admin/customer-list/customer-list.component';
+import { CustomerDetailComponent } from './components/dashboard/admin/customer-detail/customer-detail.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { EditProductsComponent } from './components/dashboard/admin/edit-product
     AddProductComponent,
     AddImagesComponent,
     OrderPlaceComponent,
-    EditProductsComponent
+    EditProductsComponent,
+    CustomerListComponent,
+    CustomerDetailComponent
   ],
   imports: [
     BrowserModule,

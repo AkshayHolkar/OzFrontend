@@ -1,0 +1,37 @@
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Detail</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th><b>Business Name</b></th>
+        <td>{{customerDetail.businessName}}</td>
+      </tr>
+      <tr>
+        <th><b>ABN</b></th>
+        <td>{{customerDetail.abn}}</td>
+      </tr>
+      <tr>
+        <th><b>Contact Name</b></th>
+        <td>{{customerDetail.contactName}}</td>
+      </tr>
+      <tr>
+        <th><b>Contact Number</b></th>
+        <td>{{customerDetail.phone}}</td>
+      </tr>
+      <tr>
+        <th><b>Address</b></th>
+        <td>{{customerDetail.streetAddress}}<br>
+          {{customerDetail.city}}<br>
+          {{customerDetail.state}}<br>
+          {{customerDetail.postcode}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button (click)="backClicked()" type="button" class="btn btn-primary
+    back-button">Back</button>
+</div>
