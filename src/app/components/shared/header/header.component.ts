@@ -10,10 +10,14 @@ import { DataSharingService } from 'src/app/service/data-sharing.service';
 export class HeaderComponent implements OnInit {
 
   isLogin: boolean = false;
+  isInRegistrationProcess: boolean = false;
 
   constructor(private router: Router, private dataSharingService: DataSharingService) {
     this.dataSharingService.isUserLoggedIn.subscribe(value => {
       this.isLogin = value;
+    });
+    this.dataSharingService.isUserInRegistrationProccess.subscribe(value => {
+      this.isInRegistrationProcess = value;
     });
   }
 
