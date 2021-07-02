@@ -1,0 +1,32 @@
+<div class="container">
+  <p *ngIf="isSuccess">
+    <ngb-alert type="success" [dismissible]="true">
+      <strong>Approved successfully!</strong>
+    </ngb-alert>
+  </p>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Business Name</th>
+        <th scope="col">Contact Name</th>
+        <th scope="col">Contact Number</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let account of accounts">
+        <th>
+          <b (click)="accountDetail(account)">{{account.businessName}}</b>
+        </th>
+        <td>{{account.contactName}}</td>
+        <td>{{account.phone}}</td>
+        <td *ngIf="account.approved;else approve_button">
+          <h6 style="color: green;">Approved</h6>
+        </td>
+        <ng-template #approve_button>
+          <button (click)="onSubmit(account)" class="approve-btn">Approve</button>
+        </ng-template>
+      </tr>
+    </tbody>
+  </table>
+</div>
