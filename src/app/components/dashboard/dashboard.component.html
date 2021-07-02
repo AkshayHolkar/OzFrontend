@@ -12,6 +12,12 @@
     </ng-template>
   </ng-container>
   <ng-container *ngIf="isAdmin" ngbNavItem>
+    <a ngbNavLink>Customers</a>
+    <ng-template ngbNavContent>
+      <app-customer-list></app-customer-list>
+    </ng-template>
+  </ng-container>
+  <ng-container *ngIf="isAdmin" ngbNavItem>
     <a ngbNavLink>Add Product</a>
     <ng-template ngbNavContent>
       <app-add-product></app-add-product>
