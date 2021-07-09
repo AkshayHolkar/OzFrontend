@@ -8,7 +8,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  readonly baseURI = "https://localhost:5001/api";
+  readonly baseURI = "https://ozdistributionapi.azurewebsites.net/api";
 
   register(formData: any) {
     var body = {
@@ -23,6 +23,8 @@ export class UserService {
   }
 
   approve(userId: string) {
-    return this.http.post(this.baseURI + '/Identity/Approve', userId);
+    let formData: FormData = new FormData();
+    formData.append('userId', userId);
+    return this.http.post(this.baseURI + '/Identity/Approve', formData);
   }
 }
