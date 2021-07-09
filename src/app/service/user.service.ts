@@ -27,4 +27,8 @@ export class UserService {
     formData.append('userId', userId);
     return this.http.post(this.baseURI + '/Identity/Approve', formData);
   }
+
+  refresh(formData: any) {
+    return this.http.post(this.baseURI + '/Identity/Refresh', formData);
+  }
 }
