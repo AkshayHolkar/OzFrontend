@@ -27,6 +27,7 @@ export class HeaderComponent implements OnInit {
   onLogout() {
     this.dataSharingService.isUserLoggedIn.next(false);
     localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
     this.router.navigate(['/user/login']);
   }
 }

@@ -44,6 +44,7 @@ export class RegisterComponent implements OnInit {
         this.dataSharingService.isUserLoggedIn.next(true);
         this.dataSharingService.isUserInRegistrationProccess.next(true);
         localStorage.setItem('token', res.token);
+        localStorage.setItem('refreshToken', res.refreshToken);
         this.router.navigateByUrl("/user/account");
       },
       err => {

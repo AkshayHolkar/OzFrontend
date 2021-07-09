@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IRefreshTokenRequest } from 'src/app/models/refreshTokenRequest';
 import { DataSharingService } from 'src/app/service/data-sharing.service';
 import { UserService } from 'src/app/service/user.service';
 
@@ -19,9 +20,34 @@ export class LoginComponent implements OnInit {
   isFail = false;
   roles: Array<string> = [];
 
-  constructor(private service: UserService, private router: Router, private fb: FormBuilder, private dataSharingService: DataSharingService) { }
+  constructor(private service: UserService, private router: Router, private fb: FormBuilder, private dataSharingService: DataSharingService, private userService: UserService) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem('refreshToken') != null) {
+      this.loginWithRefreshmentToken();
+    }
+  }
+
+  loginWithRefreshmentToken() {
+    let params: IRefreshTokenRequest = {
+      token: localStorage.getItem('token') || '',
+      refreshToken: localStorage.getItem('refreshToken') || ''
+    };
+    localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
+    this.userService.refresh(params).subscribe(
+      (res: any) => {
+        this.dataSharingService.isUserLoggedIn.next(true);
+        localStorage.setItem('token', res.token);
+        localStorage.setItem('refreshToken', res.refreshToken);
+        this.GetUserRoles(res.token);
+        this.router.navigate(["products"]);
+      },
+      error => {
+        this.dataSharingService.isUserLoggedIn.next(false);
+        this.router.navigateByUrl('/user/login');
+      }
+    );
   }
 
   onSubmit() {
@@ -30,6 +56,7 @@ export class LoginComponent implements OnInit {
       (res: any) => {
         this.dataSharingService.isUserLoggedIn.next(true);
         localStorage.setItem('token', res.token);
+        localStorage.setItem('refreshToken', res.refreshToken);
         this.GetUserRoles(res.token);
         this.router.navigate(["products"]);
       },
