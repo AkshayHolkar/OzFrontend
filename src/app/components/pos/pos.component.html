@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="customersListSection">
+        <label for="size">Please Select Customer</label>
+        <select name="customerList" (ngModelChange)="setCustomerId($event)" (ngModel)="accounts">
+            <option *ngFor="let account of accounts" [ngValue]="account.userId">{{account.businessName}}
+                {{account.city}}
+            </option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-8">
+        <app-product-card-list></app-product-card-list>
+    </div>
+    <div class="col-4">
+        <app-cart [customerId]="customerId"></app-cart>
+    </div>
+</div>

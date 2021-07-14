@@ -12,11 +12,13 @@ import { AddImagesComponent } from './components/dashboard/admin/add-images/add-
 import { OrderPlaceComponent } from './components/cart/order-place/order-place.component';
 import { OrderDetailComponent } from './components/dashboard/order-detail/order-detail.component';
 import { CustomerDetailComponent } from './components/dashboard/admin/customer-detail/customer-detail.component';
+import { PosComponent } from './components/pos/pos.component';
 
 const routes: Routes = [
   { path: '', component: ProductCardListComponent },
   { path: 'products', component: ProductCardListComponent },
   { path: 'product/:id', component: ProductDetailComponent },
+  { path: 'pos', component: PosComponent, canActivate: [AuthGuard] },
   {
     path: 'user',
     children: [

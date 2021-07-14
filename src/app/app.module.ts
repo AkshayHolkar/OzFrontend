@@ -31,6 +31,7 @@ import { OrderPlaceComponent } from './components/cart/order-place/order-place.c
 import { EditProductsComponent } from './components/dashboard/admin/edit-products/edit-products.component';
 import { CustomerListComponent } from './components/dashboard/admin/customer-list/customer-list.component';
 import { CustomerDetailComponent } from './components/dashboard/admin/customer-detail/customer-detail.component';
+import { PosComponent } from './components/pos/pos.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { CustomerDetailComponent } from './components/dashboard/admin/customer-d
     OrderPlaceComponent,
     EditProductsComponent,
     CustomerListComponent,
-    CustomerDetailComponent
+    CustomerDetailComponent,
+    PosComponent
   ],
   imports: [
     BrowserModule,
