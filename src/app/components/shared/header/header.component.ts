@@ -11,6 +11,7 @@ export class HeaderComponent implements OnInit {
 
   isLogin: boolean = false;
   isInRegistrationProcess: boolean = false;
+  isAdmin: boolean = false;
 
   constructor(private router: Router, private dataSharingService: DataSharingService) {
     this.dataSharingService.isUserLoggedIn.subscribe(value => {
@@ -18,6 +19,9 @@ export class HeaderComponent implements OnInit {
     });
     this.dataSharingService.isUserInRegistrationProccess.subscribe(value => {
       this.isInRegistrationProcess = value;
+    });
+    this.dataSharingService.isUserAdmin.subscribe(value => {
+      this.isAdmin = value;
     });
   }
 
