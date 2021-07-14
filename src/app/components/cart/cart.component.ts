@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ICart } from 'src/app/models/cart';
 import { IOrder } from 'src/app/models/order';
@@ -14,6 +14,7 @@ import { OrderService } from 'src/app/service/order.service';
 })
 export class CartComponent implements OnInit {
 
+  @Input() customerId = '';
   carts: ICart[] = [];
   total: number = 0;
   isEmpty = true;
@@ -57,6 +58,7 @@ export class CartComponent implements OnInit {
   }
 
   order() {
+    this.newOrder.customerId = this.customerId;
     this.orderService.addOrder(this.newOrder).subscribe(
       (result: any) => {
         this.addOrderDetail(result.id);
