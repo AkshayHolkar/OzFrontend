@@ -3,6 +3,14 @@
     <strong>Added to cart!</strong>
   </ngb-alert>
 </p>
+<p *ngIf="isMissingColor || isMissingSize">
+  <ngb-alert type="danger" [dismissible]="true">
+    <strong *ngIf="isMissingColor,else missingSizeBlock">Please select color</strong>
+    <ng-template #missingSizeBlock>
+      <strong>Please select Size</strong>
+    </ng-template>
+  </ngb-alert>
+</p>
 <div class="container main">
   <div class="row justify-content-md-center">
     <div class="col-6"> <img [src]="url" alt="Product Image" style="width:100%">

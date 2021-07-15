@@ -55,6 +55,8 @@ export class ProductDetailComponent implements OnInit {
   productId: number = 0;
   isLogin: boolean = false;
   isApproved: boolean = false;
+  isMissingColor: boolean = false;
+  isMissingSize: boolean = false;
 
   constructor(private productService: ProductService, private route: ActivatedRoute, private colorService: ColorService, private sizeService: SizeService, private cartService: CartService, private imageService: ImageService, private dataSharingService: DataSharingService) {
     this.dataSharingService.isUserLoggedIn.subscribe(value => {
@@ -134,14 +136,27 @@ export class ProductDetailComponent implements OnInit {
     this.cart.price = this.product.price;
     this.cart.imageUrl = this.images.find(i => i.main == true)?.imageScr || '';
 
-    this.cartService.addCart(this.cart).subscribe(
-      (result) => {
-        this.isSuccess = true;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    if (this.isRequiredFieldExist(this.cart))
+      this.cartService.addCart(this.cart).subscribe(
+        (result) => {
+          this.isSuccess = true;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
+
+  isRequiredFieldExist(cart: ICart) {
+    if (!this.product.colorNotApplicable && cart.color == '') {
+      this.isMissingColor = true;
+      return false;
+    }
+    if (!this.product.sizeNotApplicable && cart.size == '') {
+      this.isMissingSize = true;
+      return false;
+    }
+    return true;
   }
 
   changeImage(imageUrl: string) {
