@@ -13,6 +13,7 @@ import { OrderPlaceComponent } from './components/cart/order-place/order-place.c
 import { OrderDetailComponent } from './components/dashboard/order-detail/order-detail.component';
 import { CustomerDetailComponent } from './components/dashboard/admin/customer-detail/customer-detail.component';
 import { PosComponent } from './components/pos/pos.component';
+import { OrderComponent } from './components/dashboard/order/order.component';
 
 const routes: Routes = [
   { path: '', component: ProductCardListComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
       { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
       { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+      { path: 'orders/:customerId', component: OrderComponent, canActivate: [AuthGuard] },
       { path: 'orderDetail/:id/:customerId', component: OrderDetailComponent, canActivate: [AuthGuard] },
       {
         path: 'customerDetail', component: CustomerDetailComponent,

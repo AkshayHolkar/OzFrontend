@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IOrder } from 'src/app/models/order';
 import { IOrderStatus } from 'src/app/models/orderStatus';
 import { DataSharingService } from 'src/app/service/data-sharing.service';
@@ -18,29 +18,48 @@ export class OrderComponent implements OnInit {
   isSuccess = false;
   orderStatus: IOrderStatus[] = [];
   selectedOption = '';
+  customerId = '';
 
-  constructor(private orderService: OrderService, private router: Router, private dataSharingService: DataSharingService, private orderStatusService: OrderStatusService) {
+  constructor(private orderService: OrderService, private router: Router, private dataSharingService: DataSharingService, private orderStatusService: OrderStatusService, private route: ActivatedRoute) {
     this.dataSharingService.isUserAdmin.subscribe(value => {
       this.isAdmin = value;
     })
   }
 
   ngOnInit(): void {
+    this.getCustomerId();
     this.getOrders();
     if (this.isAdmin)
       this.getOrderStatus();
   }
 
-  getOrders() {
+  getCustomerId() {
+    this.route.params.subscribe(
+      (params) => {
+        this.customerId = params['customerId'];
+      });
+  }
 
-    this.orderService.getOrders().subscribe(
-      result => {
-        this.orders = result;
-      },
-      error => {
-        console.log(error);
-      }
-    );
+  getOrders() {
+    if (this.customerId == undefined) {
+      this.orderService.getOrders().subscribe(
+        result => {
+          this.orders = result;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    } else {
+      this.orderService.getCustomerOrders(this.customerId).subscribe(
+        result => {
+          this.orders = result;
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
   }
 
   getOrderStatus() {

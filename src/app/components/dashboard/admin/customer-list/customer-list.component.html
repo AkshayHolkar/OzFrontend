@@ -10,6 +10,7 @@
         <th scope="col">Business Name</th>
         <th scope="col">Contact Name</th>
         <th scope="col">Contact Number</th>
+        <th scope="col">Order History</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
@@ -20,11 +21,22 @@
         </th>
         <td>{{account.contactName}}</td>
         <td>{{account.phone}}</td>
+        <td *ngIf="account.approved;else Not_Approved">
+          <button [routerLink]="['../orders',account.userId]"
+            class="btn-primary">Show</button>
+        </td>
+        <ng-template #Not_Approved>
+          <td>
+            <p>-</p>
+          </td>
+        </ng-template>
         <td *ngIf="account.approved;else approve_button">
           <h6 style="color: green;">Approved</h6>
         </td>
         <ng-template #approve_button>
-          <button (click)="onSubmit(account)" class="approve-btn">Approve</button>
+          <td>
+            <button (click)="onSubmit(account)" class="approve-btn">Approve</button>
+          </td>
         </ng-template>
       </tr>
     </tbody>
