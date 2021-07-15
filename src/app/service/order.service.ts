@@ -16,6 +16,10 @@ export class OrderService {
     return this.http.get<IOrder[]>(this.baseURI + "/Orders");
   }
 
+  getCustomerOrders(customerId: string): Observable<IOrder[]> {
+    return this.http.get<IOrder[]>(this.baseURI + "/Orders?customerId=" + customerId);
+  }
+
   getOrder(id: number): Observable<IOrder> {
     return this.http.get<IOrder>(this.baseURI + "/Orders" + id);
   }
