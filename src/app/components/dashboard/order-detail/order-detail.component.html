@@ -29,6 +29,7 @@
           {{item.productName}}<br>
           <p *ngIf="!(item.size == '' || item.size == null)">Size: {{item.size}}</p>
           <div *ngIf="!(item.color == '' || item.color == null)"> Color: <h1
+              class="show-color"
               [style.background-color]="item.color"></h1>
           </div>
         </td>
