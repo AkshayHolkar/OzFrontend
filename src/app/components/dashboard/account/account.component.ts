@@ -62,7 +62,6 @@ export class AccountComponent implements OnInit {
           this.accountForm.controls.state.setValue(this.account.state);
           this.accountForm.controls.postcode.setValue(this.account.postcode);
           this.accountForm.controls.country.setValue(this.account.country);
-          console.log(this.account);
         }
       },
       error => {

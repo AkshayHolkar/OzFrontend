@@ -80,7 +80,6 @@ export class OrderComponent implements OnInit {
 
   onSubmit(order: IOrder) {
     order.orderStatus = this.selectedOption;
-    console.log(order);
     this.orderService.updateOrder(order.id || 0, order).subscribe(
       result => {
         this.ngOnInit();

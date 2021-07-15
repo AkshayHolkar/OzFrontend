@@ -22,7 +22,6 @@ export class PosComponent implements OnInit {
     this.accountService.getAllAccounts(false).subscribe(
       (accounts) => {
         this.accounts = accounts;
-        console.log(accounts);
       },
       error => {
         console.log(error);

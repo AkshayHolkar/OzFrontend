@@ -42,7 +42,6 @@ export class ProductCardComponent implements OnInit {
   getFetureImage() {
     this.imageService.getFetureImage(this.product.id || 0).subscribe(
       (result: IImage) => {
-        console.log(result);
         this.url = result.imageScr || '';
       },
       error => {
