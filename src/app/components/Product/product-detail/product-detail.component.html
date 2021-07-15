@@ -20,13 +20,14 @@
         </div>
         <div class="form-group" *ngIf="!product.colorNotApplicable">
           <label for="color">Please Select Colour:</label>
-          <select name="color" formControlName="color" class="form-control"
-            onchange="this.style=this.options[this.selectedIndex].style">
-            <option *ngFor="let s of productColor"
-              [style.background-color]="s.color" [value]="s.color">
-              <h4 [style.background-color]="s.color">{{s.color}}</h4>
-            </option>
-          </select>
+          <div class="row color-div">
+            <div *ngFor="let s of productColor" class="form-check col">
+              <input class="form-check-input color-selector" type="radio"
+                [value]="s.color" name="color"
+                [ngStyle]="{'background-color':s.color}"
+                formControlName="color">
+            </div>
+          </div>
         </div>
         <div *ngIf="isLogin && isApproved;else please_login">
           <h5>Price: ${{product.price}}</h5>
