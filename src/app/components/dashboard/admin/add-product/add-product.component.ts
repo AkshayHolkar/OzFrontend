@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ICategory } from 'src/app/models/category';
 import { IColor } from 'src/app/models/color';
@@ -27,7 +27,7 @@ export class AddProductComponent implements OnInit {
     categoryId: new FormControl(0),
     sizeNotApplicable: new FormControl(false),
     ColorNotApplicable: new FormControl(false),
-    size: new FormControl(''),
+    sizeArray: new FormArray([]),
     addC1: new FormControl(false),
     colorQ1: new FormControl(''),
     addC2: new FormControl(false),
@@ -130,14 +130,17 @@ export class AddProductComponent implements OnInit {
 
   addProductSize(id: number) {
 
-    this.productSize.productId = id;
-    this.productSize.itemSize = this.productForm.controls.size.value;
-    this.sizeService.addProductSize(this.productSize).subscribe(
-      (sizes) => { },
-      error => {
-        console.log(error);
-      }
-    )
+    const selectedSizes: [] = this.productForm.controls.sizeArray.value;
+    for (let size in selectedSizes) {
+      this.productSize.productId = id;
+      this.productSize.itemSize = selectedSizes[size];
+      this.sizeService.addProductSize(this.productSize).subscribe(
+        (sizes) => { },
+        error => {
+          console.log(error);
+        }
+      )
+    }
   }
 
   addProductColor(id: number) {
@@ -176,6 +179,23 @@ export class AddProductComponent implements OnInit {
           console.log(error);
         }
       )
+    }
+  }
+
+  onCheckboxChange(e: any) {
+    const sizeArray: FormArray = this.productForm.get('sizeArray') as FormArray;
+
+    if (e.target.checked) {
+      sizeArray.push(new FormControl(e.target.value));
+    } else {
+      let i: number = 0;
+      sizeArray.controls.forEach((item: any) => {
+        if (item.value == e.target.value) {
+          sizeArray.removeAt(i);
+          return;
+        }
+        i++;
+      });
     }
   }
 }
