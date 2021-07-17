@@ -19,6 +19,7 @@
         </th>
         <td>{{product.name}}</td>
         <td>
+          <button (click)="editProduct(product)" class="btn btn-primary">Edit</button>
           <button (click)="onSubmit(product.id || 0)" class="btn btn-danger">Delete</button>
         </td>
       </tr>

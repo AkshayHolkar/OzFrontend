@@ -44,4 +44,8 @@ export class EditProductsComponent implements OnInit {
       }
     );
   }
+
+  editProduct(product: IProduct) {
+    this.router.navigateByUrl('user/editProduct', { state: product });
+  }
 }
