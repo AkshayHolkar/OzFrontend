@@ -38,7 +38,7 @@
             <input type="checkbox" formControlName="sizeNotApplicable"> <span>Not Applicable</span>
             <div *ngFor="let s of sizes; let i=index">
               <label>
-                <input type="checkbox" [value]="s.name" (change)="onCheckboxChange($event)" />
+                <input type="checkbox" [value]="s.name" [checked]="setSizeChecks(s.name)" (change)="onCheckboxChange($event)" />
                 {{s.name}}
               </label>
             </div>

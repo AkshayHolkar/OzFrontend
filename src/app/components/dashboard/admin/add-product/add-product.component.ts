@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 import { ICategory } from 'src/app/models/category';
 import { IColor } from 'src/app/models/color';
 import { IProduct } from 'src/app/models/product';
@@ -66,10 +67,27 @@ export class AddProductComponent implements OnInit {
     colorNotApplicable: false
   };
 
+  editProduct: IProduct = {
+    id: 0,
+    name: '',
+    price: 0,
+    quantity: 0,
+    description: '',
+    status: false,
+    categoryId: 0,
+    sizeNotApplicable: false,
+    colorNotApplicable: false
+  };
 
-  constructor(private categoryService: CategoryService, private sizeService: SizeService, private productService: ProductService, private colorService: ColorService, private router: Router) { }
+  editProductSize: IProductSize[] = [];
+  isEditMode = false;
+  editProductColors: IColor[] = [];
+
+
+  constructor(private categoryService: CategoryService, private sizeService: SizeService, private productService: ProductService, private colorService: ColorService, private router: Router, private location: Location) { }
 
   ngOnInit(): void {
+    this.getEditProduct();
     this.getCategory();
     this.getSize();
   }
@@ -105,31 +123,57 @@ export class AddProductComponent implements OnInit {
     this.product.categoryId = parseInt(this.productForm.controls.categoryId.value);
     this.product.sizeNotApplicable = this.productForm.controls.sizeNotApplicable.value;
     this.product.colorNotApplicable = this.productForm.controls.ColorNotApplicable.value;
-    console.log(this.product);
-    this.productService.addProduct(this.product).subscribe(
-      (res: any) => {
-        this.product = res;
-        if (!this.product.sizeNotApplicable) {
-          this.addProductSize(this.product.id || 0);
-        }
-        if (!this.product.colorNotApplicable) {
-          this.addProductColor(this.product.id || 0);
-        }
 
-        this.router.navigate(['user/addImages', this.product.id]);
-      },
-      err => {
-        if (err.status == 400) {
-          this.isFail = true;
-        } else {
-          console.log(err);
+    if (this.isEditMode) {
+      this.product.id = this.editProduct.id;
+      this.productService.updateProduct(this.editProduct.id || 0, this.product).subscribe(
+        res => {
+          if (!this.product.sizeNotApplicable) {
+            this.addProductSize(this.product.id || 0);
+          }
+          if (!this.product.colorNotApplicable) {
+            this.addProductColor(this.product.id || 0);
+          }
+          this.router.navigate(['user/addImages', this.product.id]);
+        },
+        error => {
+          if (error.status == 400) {
+            this.isFail = true;
+          } else {
+            console.log(error);
+          }
         }
-      }
-    );
+      );
+
+    } else {
+      this.productService.addProduct(this.product).subscribe(
+        (res: any) => {
+          this.product = res;
+          if (!this.product.sizeNotApplicable) {
+            this.addProductSize(this.product.id || 0);
+          }
+          if (!this.product.colorNotApplicable) {
+            this.addProductColor(this.product.id || 0);
+          }
+
+          this.router.navigate(['user/addImages', this.product.id]);
+        },
+        err => {
+          if (err.status == 400) {
+            this.isFail = true;
+          } else {
+            console.log(err);
+          }
+        }
+      );
+    }
   }
 
   addProductSize(id: number) {
 
+    if (this.isEditMode) {
+      this.removeProductSizes();
+    }
     const selectedSizes: [] = this.productForm.controls.sizeArray.value;
     for (let size in selectedSizes) {
       this.productSize.productId = id;
@@ -143,8 +187,22 @@ export class AddProductComponent implements OnInit {
     }
   }
 
+  removeProductSizes() {
+    for (let size of this.editProductSize) {
+      this.sizeService.deleteProductSize(size.id || 0).subscribe(
+        success => { },
+        error => {
+          console.log(error);
+        }
+      )
+    }
+  }
+
   addProductColor(id: number) {
 
+    if (this.isEditMode) {
+      this.removeProductColors();
+    }
     this.productColor.productId = id;
     if (this.productForm.controls.addC1.value) {
       this.productColor.color = this.color1;
@@ -182,6 +240,17 @@ export class AddProductComponent implements OnInit {
     }
   }
 
+  removeProductColors() {
+    for (let color of this.editProductColors) {
+      this.colorService.deleteColor(color.id || 0).subscribe(
+        success => { },
+        error => {
+          console.log(error);
+        }
+      )
+    }
+  }
+
   onCheckboxChange(e: any) {
     const sizeArray: FormArray = this.productForm.get('sizeArray') as FormArray;
 
@@ -197,5 +266,94 @@ export class AddProductComponent implements OnInit {
         i++;
       });
     }
+    console.log(this.productForm.value);
+  }
+
+  // Edit product section
+
+  getEditProduct() {
+    var data: any = this.location.getState();
+    this.editProduct = data;
+    if (this.editProduct.id != undefined) {
+      this.isEditMode = true;
+      this.productForm.controls.name.setValue(this.editProduct.name);
+      this.productForm.controls.price.setValue(this.editProduct.price);
+      this.productForm.controls.quantity.setValue(this.editProduct.quantity);
+      this.productForm.controls.description.setValue(this.editProduct.description);
+      this.productForm.controls.status.setValue(this.editProduct.status);
+      this.productForm.controls.categoryId.setValue(this.editProduct.categoryId);
+      this.productForm.controls.sizeNotApplicable.setValue(this.editProduct.sizeNotApplicable);
+      this.productForm.controls.ColorNotApplicable.setValue(this.editProduct.colorNotApplicable);
+
+      if (!this.editProduct.sizeNotApplicable) {
+        this.setEditProductSizes(this.editProduct.id || 0);
+      }
+      if (!this.editProduct.colorNotApplicable)
+        this.setEditProductColors(this.editProduct.id || 0);
+    }
+  }
+
+  setEditProductSizes(productId: number) {
+    this.sizeService.getProductSizes(productId).subscribe(
+      result => {
+        this.editProductSize = result;
+        this.setSizeArray();
+      },
+      error => {
+        console.error(error);
+      }
+    );
+  }
+
+  setSizeArray() {
+    const sizeArray: FormArray = this.productForm.get('sizeArray') as FormArray;
+
+    for (let size of this.editProductSize) {
+      sizeArray.push(new FormControl(size.itemSize));
+    }
+  }
+
+  setEditProductColors(productId: number) {
+    this.colorService.getColors(productId).subscribe(
+      result => {
+        this.editProductColors = result;
+        this.setColors();
+      },
+      error => {
+        console.error(error);
+      }
+    );
+  }
+
+  setColors() {
+    let i: number = 1;
+    for (let color of this.editProductColors) {
+
+      if (i == 1) {
+        this.productForm.controls.colorQ1.setValue(color.productQuantity);
+        this.productForm.controls.addC1.setValue(true);
+        this.color1 = color.color;
+      }
+      if (i == 2) {
+        this.productForm.controls.colorQ2.setValue(color.productQuantity);
+        this.productForm.controls.addC2.setValue(true);
+        this.color2 = color.color;
+      } if (i == 3) {
+        this.productForm.controls.colorQ3.setValue(color.productQuantity);
+        this.productForm.controls.addC3.setValue(true);
+        this.color3 = color.color;
+      }
+      i++;
+    }
+  }
+
+  setSizeChecks(productSize: string) {
+    const sizes = this.productForm.controls.sizeArray.value;
+    for (let size of sizes) {
+      if (size == productSize) {
+        return true;
+      }
+    }
+    return false;
   }
 }
