@@ -25,4 +25,7 @@ export class SizeService {
     return this.http.get<IProductSize[]>(this.baseURI + "/ProductSizes?productId=" + productId);
   }
 
+  deleteProductSize(id: number) {
+    return this.http.delete(this.baseURI + '/ProductSizes/' + id);
+  }
 }
