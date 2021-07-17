@@ -23,4 +23,8 @@ export class ColorService {
   updateColor(id: number, formData: any) {
     return this.http.put(this.baseURI + '/Colours/' + id, formData);
   }
+
+  deleteColor(id: number) {
+    return this.http.delete(this.baseURI + '/Colours/' + id);
+  }
 }
