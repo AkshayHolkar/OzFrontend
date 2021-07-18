@@ -28,7 +28,7 @@ import { UserService } from './service/user.service';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { AddImagesComponent } from './components/dashboard/admin/add-images/add-images.component';
 import { OrderPlaceComponent } from './components/cart/order-place/order-place.component';
-import { EditProductsComponent } from './components/dashboard/admin/edit-products/edit-products.component';
+import { EditProductListComponent } from './components/dashboard/admin/edit-product-list/edit-product-list.component';
 import { CustomerListComponent } from './components/dashboard/admin/customer-list/customer-list.component';
 import { CustomerDetailComponent } from './components/dashboard/admin/customer-detail/customer-detail.component';
 import { PosComponent } from './components/pos/pos.component';
@@ -53,7 +53,7 @@ import { PosComponent } from './components/pos/pos.component';
     AddProductComponent,
     AddImagesComponent,
     OrderPlaceComponent,
-    EditProductsComponent,
+    EditProductListComponent,
     CustomerListComponent,
     CustomerDetailComponent,
     PosComponent

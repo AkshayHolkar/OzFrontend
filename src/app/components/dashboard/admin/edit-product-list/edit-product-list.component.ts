@@ -4,11 +4,11 @@ import { IProduct } from 'src/app/models/product';
 import { ProductService } from 'src/app/service/product.service';
 
 @Component({
-  selector: 'app-edit-products',
-  templateUrl: './edit-products.component.html',
-  styleUrls: ['./edit-products.component.scss']
+  selector: 'app-edit-product-list',
+  templateUrl: './edit-product-list.component.html',
+  styleUrls: ['./edit-product-list.component.scss']
 })
-export class EditProductsComponent implements OnInit {
+export class EditProductListComponent implements OnInit {
 
   products: IProduct[] = [];
   isSuccess = false;
