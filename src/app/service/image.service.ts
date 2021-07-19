@@ -27,4 +27,8 @@ export class ImageService {
   deleteImage(id: number) {
     return this.http.delete(this.baseURI + '/Images/' + id);
   }
+
+  updateImage(id: number, data: any) {
+    return this.http.put(this.baseURI + '/Images/' + id, data);
+  }
 }
