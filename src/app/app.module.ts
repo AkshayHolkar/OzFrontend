@@ -32,6 +32,7 @@ import { EditProductListComponent } from './components/dashboard/admin/edit-prod
 import { CustomerListComponent } from './components/dashboard/admin/customer-list/customer-list.component';
 import { CustomerDetailComponent } from './components/dashboard/admin/customer-detail/customer-detail.component';
 import { PosComponent } from './components/pos/pos.component';
+import { EditProductImagesComponent } from './components/dashboard/admin/edit-product-images/edit-product-images.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { PosComponent } from './components/pos/pos.component';
     EditProductListComponent,
     CustomerListComponent,
     CustomerDetailComponent,
-    PosComponent
+    PosComponent,
+    EditProductImagesComponent
   ],
   imports: [
     BrowserModule,

@@ -15,6 +15,7 @@ import { CustomerDetailComponent } from './components/dashboard/admin/customer-d
 import { PosComponent } from './components/pos/pos.component';
 import { OrderComponent } from './components/dashboard/order/order.component';
 import { AddProductComponent } from './components/dashboard/admin/add-product/add-product.component';
+import { EditProductImagesComponent } from './components/dashboard/admin/edit-product-images/edit-product-images.component';
 
 const routes: Routes = [
   { path: '', component: ProductCardListComponent },
@@ -47,6 +48,7 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
       { path: 'addImages/:id', component: AddImagesComponent, canActivate: [AuthGuard] },
+      { path: 'editImages/:id', component: EditProductImagesComponent, canActivate: [AuthGuard] },
       {
         path: 'editProduct', component: AddProductComponent,
         data: {

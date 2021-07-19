@@ -134,7 +134,7 @@ export class AddProductComponent implements OnInit {
           if (!this.product.colorNotApplicable) {
             this.addProductColor(this.product.id || 0);
           }
-          this.router.navigate(['user/addImages', this.product.id]);
+          this.router.navigate(['user/editImages', this.product.id]);
         },
         error => {
           if (error.status == 400) {
