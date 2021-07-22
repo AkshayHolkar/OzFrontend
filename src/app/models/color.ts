@@ -2,6 +2,5 @@ export interface IColor {
     id?: number,
     productId: number,
     color: string,
-    productQuantity: number,
-    product: null
+    productQuantity: number
 }

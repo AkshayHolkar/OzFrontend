@@ -52,8 +52,7 @@ export class AddProductComponent implements OnInit {
   productColor: IColor = {
     productId: 0,
     color: '',
-    productQuantity: 0,
-    product: null
+    productQuantity: 0
   };
 
   product: IProduct = {

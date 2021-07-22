@@ -65,6 +65,9 @@ export class AccountComponent implements OnInit {
         }
       },
       error => {
+        if (error.status == 404) {
+          this.isNewUser = true;
+        }
         console.log(error);
       }
     )

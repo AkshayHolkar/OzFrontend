@@ -4,6 +4,5 @@ export interface IOrder {
     id?: number,
     dateCreation: Date,
     customerId?: string,
-    orderStatus?: string,
-    orderDetails?: IOrderDetail[]
+    orderStatus?: string
 }
