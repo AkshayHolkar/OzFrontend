@@ -125,6 +125,15 @@ export class AddProductComponent implements OnInit {
 
     if (this.isEditMode) {
       this.product.id = this.editProduct.id;
+
+      if (!this.editProduct.colorNotApplicable) {
+        this.removeProductColors();
+      }
+
+      if (!this.editProduct.sizeNotApplicable) {
+        this.removeProductSizes();
+      }
+
       this.productService.updateProduct(this.editProduct.id || 0, this.product).subscribe(
         res => {
           if (!this.product.sizeNotApplicable) {
@@ -169,10 +178,6 @@ export class AddProductComponent implements OnInit {
   }
 
   addProductSize(id: number) {
-
-    if (this.isEditMode) {
-      this.removeProductSizes();
-    }
     const selectedSizes: [] = this.productForm.controls.sizeArray.value;
     for (let size in selectedSizes) {
       this.productSize.productId = id;
@@ -198,10 +203,6 @@ export class AddProductComponent implements OnInit {
   }
 
   addProductColor(id: number) {
-
-    if (this.isEditMode) {
-      this.removeProductColors();
-    }
     this.productColor.productId = id;
     if (this.productForm.controls.addC1.value) {
       this.productColor.color = this.color1;
